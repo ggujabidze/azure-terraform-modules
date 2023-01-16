@@ -21,7 +21,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_linux_function_app.my_linux_function_app](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app) | resource |
-| [azurerm_private_endpoint.my_private_ep](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint) | resource |
 | [azurerm_subnet.subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subnet) | data source |
 
 ## Inputs
@@ -59,7 +58,6 @@ No modules.
 | <a name="input_content_share_force_disabled"></a> [content\_share\_force\_disabled](#input\_content\_share\_force\_disabled) | (Optional) Should the settings for linking the Function App to storage be suppressed. | `bool` | `null` | no |
 | <a name="input_cors_allowed_origins"></a> [cors\_allowed\_origins](#input\_cors\_allowed\_origins) | Specifies a list of origins that should be allowed to make cross-origin calls. | `list(string)` | `[]` | no |
 | <a name="input_cors_support_credentials"></a> [cors\_support\_credentials](#input\_cors\_support\_credentials) | Are credentials allowed in CORS requests? | `bool` | `false` | no |
-| <a name="input_custom_network_interface_name"></a> [custom\_network\_interface\_name](#input\_custom\_network\_interface\_name) | (Optional) The custom name of the network interface attached to the private endpoint. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_daily_memory_time_quota"></a> [daily\_memory\_time\_quota](#input\_daily\_memory\_time\_quota) | The amount of memory in gigabyte-seconds that your application is allowed to consume per day. Setting this value only affects function apps under the consumption plan. | `number` | `0` | no |
 | <a name="input_default_documents"></a> [default\_documents](#input\_default\_documents) | Specifies a list of Default Documents for the Linux Function App. | `list(string)` | `[]` | no |
 | <a name="input_default_provider"></a> [default\_provider](#input\_default\_provider) | (Optional) The default authentication provider to use when multiple providers are configured. Possible values include: AzureActiveDirectory, Facebook, Google, MicrosoftAccount, Twitter, Github. | `string` | `null` | no |
@@ -91,9 +89,7 @@ No modules.
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | The path to be checked for this Linux Function App health. | `string` | `null` | no |
 | <a name="input_http2_enabled"></a> [http2\_enabled](#input\_http2\_enabled) | Specifies if the HTTP2 protocol should be enabled. | `bool` | `false` | no |
 | <a name="input_https_only"></a> [https\_only](#input\_https\_only) | Can the Function App only be accessed via HTTPS? | `bool` | `false` | no |
-| <a name="input_ip_configuration_name"></a> [ip\_configuration\_name](#input\_ip\_configuration\_name) | (Required) Specifies the Name of the IP Configuration. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_ip_restriction_headers"></a> [ip\_restriction\_headers](#input\_ip\_restriction\_headers) | The map of IP restriction headers | `list(any)` | `null` | no |
-| <a name="input_is_manual_connection"></a> [is\_manual\_connection](#input\_is\_manual\_connection) | (Required) Does the Private Endpoint require Manual Approval from the remote resource owner? If you are trying to connect the Private Endpoint to a remote resource without having the correct RBAC permissions on the remote resource set this value to true. | `bool` | `false` | no |
 | <a name="input_issuer"></a> [issuer](#input\_issuer) | (Optional) The OpenID Connect Issuer URI that represents the entity which issues access tokens for this Linux Function App. | `string` | `null` | no |
 | <a name="input_java_version"></a> [java\_version](#input\_java\_version) | The Version of Java to use. Supported versions include 8, 11 & 17 (In-Preview). | `string` | `null` | no |
 | <a name="input_keep_at_least_one_backup"></a> [keep\_at\_least\_one\_backup](#input\_keep\_at\_least\_one\_backup) | (Optional) Should the service keep at least one backup, regardless of age of backup. | `bool` | `false` | no |
@@ -101,7 +97,6 @@ No modules.
 | <a name="input_load_balancing_mode"></a> [load\_balancing\_mode](#input\_load\_balancing\_mode) | The Site load balancing mode. Possible values include: WeightedRoundRobin, LeastRequests, LeastResponseTime, WeightedTotalTraffic, RequestHash, PerSiteRoundRobin. | `string` | `"LeastRequests"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Azure location for Function App | `string` | n/a | yes |
 | <a name="input_managed_pipeline_mode"></a> [managed\_pipeline\_mode](#input\_managed\_pipeline\_mode) | Managed pipeline mode. Possible values include: Integrated, Classic. | `string` | `"Integrated"` | no |
-| <a name="input_member_name"></a> [member\_name](#input\_member\_name) | (Optional) Specifies the member name this IP address applies to. If it is not specified, it will use the value of subresource\_name. | `string` | `null` | no |
 | <a name="input_microsoft_client_id"></a> [microsoft\_client\_id](#input\_microsoft\_client\_id) | (Required) The ID of the microsoft app used for login. | `string` | `null` | no |
 | <a name="input_microsoft_client_secret"></a> [microsoft\_client\_secret](#input\_microsoft\_client\_secret) | (Optional) The Client Secret of the microsoft app used for microsoft login. Cannot be specified with client\_secret\_setting\_name. | `string` | `null` | no |
 | <a name="input_microsoft_client_secret_settings_name"></a> [microsoft\_client\_secret\_settings\_name](#input\_microsoft\_client\_secret\_settings\_name) | (Optional) The app setting name that contains the client\_secret value used for microsoft login. Cannot be specified with client\_secret. | `string` | `null` | no |
@@ -111,16 +106,9 @@ No modules.
 | <a name="input_node_version"></a> [node\_version](#input\_node\_version) | The version of Node to run. Possible values include ~12, ~14, ~16 and ~18. | `string` | `null` | no |
 | <a name="input_powershell_core_version"></a> [powershell\_core\_version](#input\_powershell\_core\_version) | The version of PowerShell Core to run. Possible values are 7, and 7.2. | `string` | `null` | no |
 | <a name="input_pre_warmed_instance_count"></a> [pre\_warmed\_instance\_count](#input\_pre\_warmed\_instance\_count) | The number of pre-warmed instances for this Linux Function App. Only affects apps on an Elastic Premium plan. | `number` | `null` | no |
-| <a name="input_private_connection_resource_alias"></a> [private\_connection\_resource\_alias](#input\_private\_connection\_resource\_alias) | (Optional) The Service Alias of the Private Link Enabled Remote Resource which this Private Endpoint should be connected to. One of private\_connection\_resource\_id or private\_connection\_resource\_alias must be specified. | `string` | `null` | no |
-| <a name="input_private_dns_zone_group_name"></a> [private\_dns\_zone\_group\_name](#input\_private\_dns\_zone\_group\_name) | (Required) Specifies the Name of the Private DNS Zone Group. Changing this forces a new private\_dns\_zone\_group resource to be created. | `string` | `null` | no |
-| <a name="input_private_dns_zone_ids"></a> [private\_dns\_zone\_ids](#input\_private\_dns\_zone\_ids) | (Required) Specifies the list of Private DNS Zones to include within the private\_dns\_zone\_group. | `list(string)` | `null` | no |
-| <a name="input_private_ep_subnet_name"></a> [private\_ep\_subnet\_name](#input\_private\_ep\_subnet\_name) | Specifies the name of the Subnet for private endpoint | `string` | n/a | yes |
-| <a name="input_private_ep_vnet_name"></a> [private\_ep\_vnet\_name](#input\_private\_ep\_vnet\_name) | Specifies the name of the Virtual Network this Subnet is located within. | `string` | n/a | yes |
-| <a name="input_private_ip_address"></a> [private\_ip\_address](#input\_private\_ip\_address) | (Required) Specifies the static IP address within the private endpoint's subnet to be used. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_python_version"></a> [python\_version](#input\_python\_version) | (Optional) The version of Python to run. Possible values include 3.6, 3.7, 3.8, and 3.9. | `string` | `null` | no |
 | <a name="input_remote_debugging_enabled"></a> [remote\_debugging\_enabled](#input\_remote\_debugging\_enabled) | Should Remote Debugging be enabled. | `bool` | `false` | no |
 | <a name="input_remote_debugging_version"></a> [remote\_debugging\_version](#input\_remote\_debugging\_version) | The Remote Debugging Version. Possible values include VS2017, VS2019, and VS2022. | `string` | `null` | no |
-| <a name="input_request_message"></a> [request\_message](#input\_request\_message) | (Optional) A message passed to the owner of the remote resource when the private endpoint attempts to establish the connection to the remote resource. The request message can be a maximum of 140 characters in length. Only valid if is\_manual\_connection is set to true. | `string` | `null` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Azure resource group name | `string` | n/a | yes |
 | <a name="input_retention_period_days"></a> [retention\_period\_days](#input\_retention\_period\_days) | (Optional) After how many days backups should be deleted. | `number` | `null` | no |
 | <a name="input_runtime_scale_monitoring_enabled"></a> [runtime\_scale\_monitoring\_enabled](#input\_runtime\_scale\_monitoring\_enabled) | Should Scale Monitoring of the Functions Runtime be enabled? Functions runtime scale monitoring can only be enabled for Elastic Premium Function Apps or Workflow Standard Logic Apps and requires a minimum prewarmed instance count of 1. | `bool` | `false` | no |
@@ -142,8 +130,6 @@ No modules.
 | <a name="input_storage_account_url"></a> [storage\_account\_url](#input\_storage\_account\_url) | (Required) The SAS URL to the container. | `string` | `null` | no |
 | <a name="input_storage_key_vault_secret_id"></a> [storage\_key\_vault\_secret\_id](#input\_storage\_key\_vault\_secret\_id) | The Key Vault Secret ID, optionally including version, that contains the Connection String to connect to the storage account for this Function App. cannot be used with 'storage\_account\_name'. | `string` | `null` | no |
 | <a name="input_storage_uses_managed_identity"></a> [storage\_uses\_managed\_identity](#input\_storage\_uses\_managed\_identity) | Should the Function App use Managed Identity to access the storage account. Conflicts with 'storage\_account\_access\_key'. | `bool` | `null` | no |
-| <a name="input_subresource_name"></a> [subresource\_name](#input\_subresource\_name) | (Required) Specifies the subresource this IP address applies to. subresource\_names corresponds to group\_id. Changing this forces a new resource to be created. | `string` | `null` | no |
-| <a name="input_subresource_names"></a> [subresource\_names](#input\_subresource\_names) | (Optional) A list of subresource names which the Private Endpoint is able to connect to. subresource\_names corresponds to group\_id. | `list(string)` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Function App Tags | `map(string)` | `{}` | no |
 | <a name="input_token_refresh_extension_hours"></a> [token\_refresh\_extension\_hours](#input\_token\_refresh\_extension\_hours) | (Optional) The number of hours after session token expiration that a session token can be used to call the token refresh API. | `number` | `null` | no |
 | <a name="input_token_store_enabled"></a> [token\_store\_enabled](#input\_token\_store\_enabled) | (Optional) Should the Linux Function App durably store platform-specific security tokens that are obtained during login flows? | `bool` | `false` | no |
@@ -155,7 +141,6 @@ No modules.
 | <a name="input_use_custom_runtime"></a> [use\_custom\_runtime](#input\_use\_custom\_runtime) | Should the Linux Function App use a custom runtime? | `bool` | `null` | no |
 | <a name="input_use_dotnet_isolated_runtime"></a> [use\_dotnet\_isolated\_runtime](#input\_use\_dotnet\_isolated\_runtime) | Should the DotNet process use an isolated runtime. | `bool` | `null` | no |
 | <a name="input_virtual_network_subnet_id"></a> [virtual\_network\_subnet\_id](#input\_virtual\_network\_subnet\_id) | The subnet id which will be used by this Function App for regional virtual network integration. | `string` | `null` | no |
-| <a name="input_vnet_rg_name"></a> [vnet\_rg\_name](#input\_vnet\_rg\_name) | Specifies the name of the resource group the Virtual Network is located in. | `string` | n/a | yes |
 | <a name="input_vnet_route_all_enabled"></a> [vnet\_route\_all\_enabled](#input\_vnet\_route\_all\_enabled) | Should all outbound traffic to have NAT Gateways, Network Security Groups and User Defined Routes applied? | `bool` | `false` | no |
 | <a name="input_websockets_enabled"></a> [websockets\_enabled](#input\_websockets\_enabled) | Should Web Sockets be enabled. | `bool` | `false` | no |
 | <a name="input_worker_count"></a> [worker\_count](#input\_worker\_count) | The number of Workers for this Linux Function App. | `number` | `null` | no |
